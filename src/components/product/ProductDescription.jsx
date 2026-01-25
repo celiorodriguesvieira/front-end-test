@@ -1,4 +1,5 @@
 import { Stack, Typography } from '@mui/material';
+import { formatToBRLCurrency } from '../../utils/format';
 
 export function ProductDescription({
   installments,
@@ -9,11 +10,11 @@ export function ProductDescription({
   return (
     <Stack gap={1}>
       <Typography fontSize={12} lineHeight="16px" color="primary.main">
-        Em até{installments}x de {installmentPrice}
+        Em até {installments}x de {formatToBRLCurrency(installmentPrice)}
       </Typography>
 
       <Typography fontSize={12} lineHeight="16px" color="primary.main">
-        {oneTimePrice} à vista {oneTimeDiscountPercentage}% de desconto
+        {formatToBRLCurrency(oneTimePrice)} à vista ({oneTimeDiscountPercentage}% de desconto)
       </Typography>
     </Stack>
   );

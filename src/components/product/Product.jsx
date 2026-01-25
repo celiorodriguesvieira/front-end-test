@@ -1,9 +1,8 @@
 import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
 import { ProductContent } from './ProductContent';
-import { DataClientForm } from '../dataClientForm/DataClientForm';
 
-export function Product({ data }) {
+export function Product({ data, onAddToCart, onRemoveFromCart, quantity = 0 }) {
   const [isHovered, setIsHovered] = useState(false);
   const { image, title } = data;
 
@@ -28,7 +27,13 @@ export function Product({ data }) {
     >
       <Box component="img" src={image} sx={{ width: '100%', height: 'auto' }} alt={title}></Box>
       <Box minHeight={155} width="100%">
-        <ProductContent {...data} showCounter={isHovered} />
+        <ProductContent
+          {...data}
+          showCounter={isHovered}
+          onAddToCart={onAddToCart}
+          onRemoveFromCart={onRemoveFromCart}
+          quantity={quantity}
+        />
       </Box>
     </Stack>
   );

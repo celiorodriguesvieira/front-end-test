@@ -9,5 +9,8 @@ export const theme = createTheme({
     primary: {
       main: blueGrey[600],
     },
+    divider: {
+      main: blueGrey[100],
+    },
   },
 });
