@@ -1,10 +1,29 @@
-import { email, renderSelectField, renderTextField, required } from '../../utils/form';
-import { Button, Grid, MenuItem, Stack } from '@mui/material';
+import { Alert, Button, Grid, MenuItem, Stack } from '@mui/material';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { SectionTitle } from '../SectionTitle/SectionTitle';
+import { useNavigate } from 'react-router-dom';
+import { getProductsFromCart } from '../../store/cart';
+import { email, renderSelectField, renderTextField, required } from '../../utils/form';
 import { TotalPrice } from '../TotalPrice/TotalPrice';
+import { SectionTitle } from '../SectionTitle/SectionTitle';
 
 function DataClientForm({ handleSubmit }) {
+  const navigate = useNavigate();
+  const productsInCart = useSelector((state) => getProductsFromCart(state.cart));
+  const hasProductsInCart = productsInCart.length > 0;
+  const [cartError, setCartError] = useState(false);
+
+  const onSubmit = (values) => {
+    if (!hasProductsInCart) {
+      setCartError(true);
+      return;
+    }
+    setCartError(false);
+    console.log('DataClientForm onSubmit values:', values);
+    navigate('/success');
+  };
+
   return (
     <>
       <Grid size={{ xs: 12 }}>
@@ -13,7 +32,7 @@ function DataClientForm({ handleSubmit }) {
       <Grid size={{ xs: 12, md: 6, lg: 5 }}>
         <Field name="name" component={renderTextField} label="Nome" validate={required} />
       </Grid>
-      <Grid size={{ xs: 12, md: 5 }}>
+      <Grid size={{ xs: 12, md: 6, lg: 5 }}>
         <Field
           name="email"
           component={renderTextField}
@@ -32,10 +51,25 @@ function DataClientForm({ handleSubmit }) {
       </Grid>
       <Grid size={{ xs: 12 }}>
         <Stack alignItems="flex-end" gap={2} px={{ xs: 2, md: 0 }}>
-          <Button variant="contained" onClick={handleSubmit} type="button">
-            Finalizar Compra
-          </Button>
+          {!hasProductsInCart ? (
+            <Alert severity="warning" sx={{ width: '100%' }}>
+              Adicione ao menos 1 produto ao carrinho para finalizar a compra.
+            </Alert>
+          ) : null}
+          {cartError ? (
+            <Alert severity="error" sx={{ width: '100%' }}>
+              Você precisa adicionar ao menos 1 produto ao carrinho para continuar.
+            </Alert>
+          ) : null}
           <TotalPrice />
+          <Button
+            variant="contained"
+            onClick={handleSubmit(onSubmit)}
+            type="button"
+            disabled={!hasProductsInCart}
+          >
+            Finalizar compra
+          </Button>
         </Stack>
       </Grid>
     </>
@@ -44,9 +78,7 @@ function DataClientForm({ handleSubmit }) {
 
 const DataClientFormRedux = reduxForm({
   form: 'dataClient',
-  onSubmit: (values) => {
-    console.log('DataClientForm onSubmit values:', values);
-  },
+  destroyOnUnmount: false,
 })(DataClientForm);
 
 export default DataClientFormRedux;
