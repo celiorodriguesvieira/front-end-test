@@ -9,11 +9,10 @@ export function ProductDescription({
 }) {
   return (
     <Stack gap={1}>
-      <Typography fontSize={12} lineHeight="16px" color="primary.main">
+      <Typography fontSize={12} lineHeight="16px" color="text.secondary">
         Em até {installments}x de {formatToBRLCurrency(installmentPrice)}
       </Typography>
-
-      <Typography fontSize={12} lineHeight="16px" color="primary.main">
+      <Typography fontSize={12} lineHeight="16px" color="text.secondary">
         {formatToBRLCurrency(oneTimePrice)} à vista ({oneTimeDiscountPercentage}% de desconto)
       </Typography>
     </Stack>

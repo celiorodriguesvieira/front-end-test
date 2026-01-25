@@ -10,7 +10,6 @@ import {
 } from './store/cart';
 import DataClientFormRedux from './components/dataClientForm/DataClientForm';
 import { SectionTitle } from './components/SectionTitle/SectionTitle';
-import { Footer } from './components/Footer/Footer';
 
 function App() {
   const productsInCart = useSelector((state) => getProductsFromCart(state.cart));
@@ -44,7 +43,6 @@ function App() {
             );
           })}
           <DataClientFormRedux />
-          <Footer />
         </Grid>
       </Box>
     </>

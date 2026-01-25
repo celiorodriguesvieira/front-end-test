@@ -6,7 +6,7 @@ export function SectionTitle({ title, ...rest }) {
       fontSize={24}
       borderBottom={1}
       borderColor="divider.main"
-      color="primary.main"
+      color="text.primary"
       component="h2"
       paddingBottom={2}
       {...rest}

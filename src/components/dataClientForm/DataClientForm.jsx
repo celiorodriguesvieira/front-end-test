@@ -1,7 +1,8 @@
 import { email, renderSelectField, renderTextField, required } from '../../utils/form';
-import { Button, Grid, MenuItem } from '@mui/material';
+import { Button, Grid, MenuItem, Stack } from '@mui/material';
 import { Field, reduxForm } from 'redux-form';
 import { SectionTitle } from '../SectionTitle/SectionTitle';
+import { TotalPrice } from '../TotalPrice/TotalPrice';
 
 function DataClientForm({ handleSubmit }) {
   return (
@@ -30,9 +31,12 @@ function DataClientForm({ handleSubmit }) {
         </Field>
       </Grid>
       <Grid size={{ xs: 12 }}>
-        <Button variant="contained" onClick={handleSubmit} type="button">
-          Enviar
-        </Button>
+        <Stack alignItems="flex-end" gap={2} px={{ xs: 2, md: 0 }}>
+          <Button variant="contained" onClick={handleSubmit} type="button">
+            Finalizar Compra
+          </Button>
+          <TotalPrice />
+        </Stack>
       </Grid>
     </>
   );

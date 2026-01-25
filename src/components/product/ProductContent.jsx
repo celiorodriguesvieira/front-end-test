@@ -35,7 +35,7 @@ export function ProductContent({
       {showCounter && (
         <>
           <Stack sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
-            <Button variant="contained" color="primary" onClick={() => onRemoveFromCart(id)}>
+            <Button variant="contained" color="secondary" onClick={() => onRemoveFromCart(id)}>
               -
             </Button>
             <TextField
@@ -44,11 +44,15 @@ export function ProductContent({
               fullWidth
               sx={{ '& .MuiInputBase-input': { textAlign: 'center' } }}
             />
-            <Button variant="contained" color="primary" onClick={() => onAddToCart(id, fullPrice)}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => onAddToCart(id, fullPrice)}
+            >
               +
             </Button>
           </Stack>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="secondary">
             Adicionar
           </Button>
         </>
