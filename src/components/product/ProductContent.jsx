@@ -2,6 +2,7 @@ import { Button, Stack, TextField } from '@mui/material';
 import { ProductTitle } from './ProductTitle';
 import { ProductPrice } from './ProductPrice';
 import { ProductDescription } from './ProductDescription';
+import { RoundedButton } from '../RoundedButton/RoundedButton';
 
 export function ProductContent({
   id,
@@ -34,23 +35,16 @@ export function ProductContent({
       />
       {showCounter && (
         <>
-          <Stack sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
-            <Button variant="contained" color="secondary" onClick={() => onRemoveFromCart(id)}>
-              -
-            </Button>
+          <Stack sx={{ display: 'flex', flexDirection: 'row', gap: 1, alignItems: 'center' }}>
+            <RoundedButton onClick={() => onRemoveFromCart(id)}>-</RoundedButton>
             <TextField
               value={quantity}
               type="text"
               fullWidth
+              size="small"
               sx={{ '& .MuiInputBase-input': { textAlign: 'center' } }}
             />
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => onAddToCart(id, fullPrice)}
-            >
-              +
-            </Button>
+            <RoundedButton onClick={() => onAddToCart(id, fullPrice)}>+</RoundedButton>
           </Stack>
           <Button variant="contained" color="secondary">
             Adicionar
