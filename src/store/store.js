@@ -1,6 +1,6 @@
 import { combineReducers, compose, createStore } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { cartReducer } from './cart';
+import { cartReducer } from '../store/cart';
 
 const rootReducer = combineReducers({
   form: formReducer,

@@ -51,16 +51,11 @@ function DataClientForm({ handleSubmit }) {
       </Grid>
       <Grid size={{ xs: 12 }}>
         <Stack alignItems="flex-end" gap={2} px={{ xs: 2, md: 0 }}>
-          {!hasProductsInCart ? (
-            <Alert severity="warning" sx={{ width: '100%' }}>
+          {(!hasProductsInCart || cartError) && (
+            <Alert severity={cartError ? 'error' : 'warning'} sx={{ width: '100%' }}>
               Adicione ao menos 1 produto ao carrinho para finalizar a compra.
             </Alert>
-          ) : null}
-          {cartError ? (
-            <Alert severity="error" sx={{ width: '100%' }}>
-              Você precisa adicionar ao menos 1 produto ao carrinho para continuar.
-            </Alert>
-          ) : null}
+          )}
           <TotalPrice />
           <Button
             variant="contained"

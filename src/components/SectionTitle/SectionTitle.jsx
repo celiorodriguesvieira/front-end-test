@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-export function SectionTitle({ title, ...rest }) {
+export const SectionTitle = ({ title, ...rest }) => {
   return (
     <Typography
       fontSize={24}
@@ -14,4 +14,4 @@ export function SectionTitle({ title, ...rest }) {
       {title}
     </Typography>
   );
-}
+};

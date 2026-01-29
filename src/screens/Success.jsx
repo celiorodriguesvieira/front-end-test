@@ -1,12 +1,11 @@
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import { blueGrey, lightBlue } from '@mui/material/colors';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import purchaseImage from '../assets/images/purchase.png';
-import { formatToBRLCurrency } from '../utils/format';
-import { reset } from 'redux-form';
-import { getCartTotalPrice } from '../store/cart';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionClearCart } from '../../../../../Downloads/front-end-test/src/store/cart';
+import { reset } from 'redux-form';
+import { useNavigate } from 'react-router-dom';
+import { getCartTotalPrice, actionClearCart } from '../store/cart';
+import { formatToBRLCurrency } from '../utils/format';
+import purchaseImage from '../assets/images/purchase.png';
 
 export function Success() {
   const dispatch = useDispatch();

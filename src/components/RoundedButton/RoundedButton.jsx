@@ -1,6 +1,10 @@
-import { Button } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 
 export const RoundedButton = ({ disabled = false, onClick, children, ...props }) => {
+  const theme = useTheme();
+  const bgColor = disabled ? theme.palette.grey[300] : theme.palette.grey[200];
+  const textColor = theme.palette.grey[900];
+
   return (
     <Button
       disabled={disabled}
@@ -12,16 +16,16 @@ export const RoundedButton = ({ disabled = false, onClick, children, ...props })
         height: 32,
         borderRadius: '32px',
         padding: 0,
-        backgroundColor: disabled ? '#CFD7DB' : '#E5EAEC',
-        color: '#111827',
+        backgroundColor: bgColor,
+        color: textColor,
         fontWeight: 700,
         lineHeight: 1,
         '&:hover': {
-          backgroundColor: disabled ? '#CFD7DB' : '#E5EAEC',
+          backgroundColor: bgColor,
         },
         '&.Mui-disabled': {
-          backgroundColor: '#CFD7DB',
-          color: '#111827',
+          backgroundColor: theme.palette.grey[300],
+          color: textColor,
         },
       }}
       {...props}
